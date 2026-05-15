@@ -4,17 +4,11 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  ResponsiveContainer
+  ResponsiveContainer,
+  CartesianGrid
 } from "recharts";
 
-function CpuLoadChart({ load }) {
-
-  const data = [
-    {
-      name: "CPU",
-      charge: load
-    }
-  ];
+function CpuLoadChart({ history }) {
 
   return (
 
@@ -25,29 +19,32 @@ function CpuLoadChart({ load }) {
         padding: "20px",
         boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
         border: "1px solid #e5e7eb",
-        height: "300px"
+        height: "320px"
       }}
     >
 
-      <h2>Charge CPU</h2>
+      <h2 style={{ marginTop: 0 }}>
+        Historique charge CPU
+      </h2>
 
-      <ResponsiveContainer width="100%" height="80%">
+      <ResponsiveContainer width="100%" height="85%">
 
-        <LineChart data={data}>
+        <LineChart data={history}>
 
-          <XAxis dataKey="name" />
+          <CartesianGrid strokeDasharray="3 3" />
 
-          <YAxis
-            domain={[0, 100]}
-          />
+          <XAxis dataKey="time" />
+
+          <YAxis domain={[0, 100]} />
 
           <Tooltip />
 
           <Line
             type="monotone"
-            dataKey="charge"
+            dataKey="load"
             stroke="#2563eb"
             strokeWidth={3}
+            dot={false}
           />
 
         </LineChart>
