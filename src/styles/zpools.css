@@ -1,0 +1,56 @@
+/* =========================
+   PAGE ZPOOLS
+========================= */
+
+.zpools-page {
+  font-family: Arial, sans-serif;
+}
+
+.zpools-page-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.zpools-title-icon {
+  font-size: 32px;
+  color: #374151;
+}
+
+
+/* =========================
+   GRILLE ZPOOLS
+========================= */
+
+.zpools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+}
+
+
+/* =========================
+   RESPONSIVE MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+  .zpools-page {
+    padding: 12px;
+  }
+
+  .zpools-page-title {
+    margin-top: 60px;
+    font-size: 21px;
+  }
+
+  .zpools-title-icon {
+    font-size: 28px;
+  }
+
+  .zpools-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

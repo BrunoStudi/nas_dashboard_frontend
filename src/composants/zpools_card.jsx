@@ -30,10 +30,10 @@ function ZpoolCard({ pool }) {
         </span>
       </div>
 
-      <p><strong>Taille :</strong> {pool.size}</p>
-      <p><strong>Utilisé :</strong> {pool.allocated}</p>
-      <p><strong>Libre :</strong> {pool.free}</p>
-      <p><strong>Capacité :</strong> {pool.capacity}</p>
+      <p><strong>Taille :</strong> {pool.size}B</p>
+      <p><strong>Utilisé :</strong> {pool.allocated}B</p>
+      <p><strong>Libre :</strong> {pool.free}B</p>
+      <p><strong>Utilisation :</strong> {pool.capacity}</p>
       <p><strong>Fragmentation :</strong> {pool.fragmentation}</p>
       <p><strong>Dedup :</strong> {pool.dedup}</p>
     </div>

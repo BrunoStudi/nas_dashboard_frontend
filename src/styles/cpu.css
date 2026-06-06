@@ -1,0 +1,91 @@
+/* =========================
+   PAGE CPU
+========================= */
+
+.cpu-page {
+  font-family: Arial, sans-serif;
+}
+
+.cpu-page-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.cpu-title-icon {
+  font-size: 32px;
+  color: #374151;
+}
+
+.cpu-loading {
+  font-family: Arial, sans-serif;
+  color: #4b5563;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+.cpu-section {
+  margin-bottom: 24px;
+}
+
+.cpu-section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 0;
+  margin-bottom: 16px;
+  color: #374151;
+}
+
+.cpu-section-icon {
+  font-size: 22px;
+  color: #374151;
+}
+
+
+/* =========================
+   TEMPÉRATURES CPU
+========================= */
+
+.cpu-packages-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+
+/* =========================
+   RESPONSIVE MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .cpu-page {
+    padding: 12px;
+  }
+
+  .cpu-page-title {
+    margin-top: 60px;
+    font-size: 19px;
+  }
+
+  .cpu-title-icon {
+    font-size: 28px;
+  }
+
+  .cpu-section {
+    margin-bottom: 16px;
+  }
+
+  .cpu-section-title {
+    font-size: 20px;
+  }
+
+  .cpu-packages-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

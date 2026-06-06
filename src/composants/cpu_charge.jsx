@@ -24,7 +24,7 @@ function CpuLoadChart({ history }) {
     >
 
       <h2 style={{ marginTop: 0 }}>
-        Historique charge CPU
+        Historique de charge
       </h2>
 
       <ResponsiveContainer width="100%" height="85%">

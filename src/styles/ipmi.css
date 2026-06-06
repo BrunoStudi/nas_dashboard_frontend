@@ -1,0 +1,356 @@
+/* =========================
+   PAGE IPMI
+========================= */
+
+.ipmi-page {
+  font-family: Arial, sans-serif;
+}
+
+.ipmi-card {
+  background: white;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   TITRES ET ICÔNES
+========================= */
+
+.ipmi-page-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.ipmi-title-icon {
+  font-size: 32px;
+  color: #374151;
+}
+
+.ipmi-section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 0;
+  margin-bottom: 16px;
+  color: #374151;
+}
+
+.ipmi-section-icon {
+  font-size: 20px;
+  color: #374151;
+}
+
+/* =========================
+   MODE ACTUEL
+========================= */
+
+.mode-card {
+  text-align: center;
+}
+
+.mode-value {
+  margin-top: 12px;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.mode-auto {
+  color: #16a34a;
+}
+
+.mode-manual {
+  color: #2563eb;
+}
+
+
+/* =========================
+   SLIDER PWM
+========================= */
+
+.ipmi-slider-zone {
+  margin-top: 18px;
+}
+
+.ipmi-slider-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.pwm-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.pwm-icon {
+  color: #f59e0b;
+  font-size: 18px;
+}
+
+.pwm-value {
+  margin-left: auto;
+  font-size: 20px;
+  font-weight: bold;
+  color: #111827;
+  white-space: nowrap;
+}
+
+.ipmi-slider {
+  width: 100%;
+  cursor: pointer;
+}
+
+.ipmi-slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 6px;
+}
+
+
+/* =========================
+   BOUTONS
+========================= */
+
+.ipmi-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.ipmi-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 18px;
+  background: #2563eb;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.ipmi-btn:hover {
+  transform: translateY(-2px);
+}
+
+.ipmi-btn-manual {
+  background: #16a34a;
+}
+
+.ipmi-btn-danger {
+  background: #dc2626;
+}
+
+
+/* =========================
+   CARTES VENTILATEURS
+========================= */
+
+.fan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.fan-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 18px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.fan-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.fan-icon {
+  color: #2563eb;
+  font-size: 20px;
+}
+
+.fan-slow {
+  animation: fan-spin 2s linear infinite;
+}
+
+.fan-medium {
+  animation: fan-spin 1s linear infinite;
+}
+
+.fan-fast {
+  animation: fan-spin 0.5s linear infinite;
+}
+
+.fan-stopped {
+  color: #dc2626;
+  animation: none;
+}
+
+@keyframes fan-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.fan-rpm {
+  margin: 15px 0 8px 0;
+  font-size: 32px;
+  font-weight: bold;
+  color: #111827;
+}
+
+.fan-status {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.fan-status-ok {
+  color: #16a34a;
+}
+
+.fan-status-warn {
+  color: #f59e0b;
+}
+
+.fan-status-crit {
+  color: #dc2626;
+}
+
+
+/* =========================
+   JOURNAL VENTILATION
+========================= */
+
+.ipmi-log-list {
+  background: #111827;
+  border-radius: 12px;
+  padding: 12px;
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+.ipmi-log-line {
+  color: #d1d5db;
+  font-family: monospace;
+  font-size: 13px;
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ipmi-log-line:first-child {
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.ipmi-log-line:last-child {
+  border-bottom: none;
+}
+
+.ipmi-log-empty {
+  color: #9ca3af;
+  padding: 12px;
+  font-style: italic;
+}
+
+
+/* =========================
+   RESPONSIVE MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .ipmi-page {
+    padding: 12px;
+  }
+
+  .ipmi-page-title {
+    font-size: 20px;
+    margin-top: 60px;
+  }
+
+  .ipmi-title-icon {
+    font-size: 28px;
+  }
+
+  .ipmi-section-title {
+    font-size: 22px;
+  }
+
+  .ipmi-card {
+    padding: 14px;
+    margin-bottom: 16px;
+  }
+
+  .mode-value {
+    font-size: 26px;
+  }
+
+  .ipmi-slider-header {
+    flex-direction: row;
+  }
+
+  .pwm-value {
+    font-size: 16px;
+  }
+
+  .ipmi-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .ipmi-btn {
+    width: 100%;
+    padding: 14px 10px;
+    font-size: 15px;
+  }
+
+  .fan-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .fan-card {
+    padding: 14px;
+  }
+
+  .fan-rpm {
+    font-size: 24px;
+  }
+
+  .fan-status {
+    font-size: 16px;
+  }
+
+  .ipmi-log-list {
+    max-height: 300px;
+  }
+
+  .ipmi-log-line {
+    font-size: 12px;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+}

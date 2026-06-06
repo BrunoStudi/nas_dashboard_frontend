@@ -1,23 +1,46 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function Sidebar() {
-  return (
-    <aside style={{
-      width: "240px",
-      minHeight: "100vh",
-      background: "#111827",
-      color: "white",
-      padding: "20px"
-    }}>
-      <h2>NAS Monitor</h2>
+  const [open, setOpen] = useState(false);
 
-      <nav style={{ display: "flex", flexDirection: "column", gap: "12px", marginTop: "30px" }}>
-        <Link style={{ color: "white", textDecoration: "none" }} to="/">Dashboard</Link>
-        <Link style={{ color: "white", textDecoration: "none" }} to="/cpu">CPU</Link>
-        <Link style={{ color: "white", textDecoration: "none" }} to="/disks">Disques</Link>
-        <Link style={{ color: "white", textDecoration: "none" }} to="/zpools">ZPools</Link>
-      </nav>
-    </aside>
+  return (
+    <>
+      {/* Bouton burger mobile */}
+      <button
+        className="burger-btn"
+        onClick={() => setOpen(!open)}
+      >
+        ☰
+      </button>
+
+      {/* Fond sombre */}
+      {open && (
+        <div
+          className="overlay"
+          onClick={() => setOpen(false)}
+        />
+      )}
+
+      <aside className={`sidebar ${open ? "open" : ""}`}>
+        <h2>NAS Monitor</h2>
+
+        <nav
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "12px",
+            marginTop: "30px"
+          }}
+        >
+          <Link onClick={() => setOpen(false)} to="/">NAS Exodus</Link>
+          <Link onClick={() => setOpen(false)} to="/cpu">CPU</Link>
+          <Link onClick={() => setOpen(false)} to="/disks">Disques</Link>
+          <Link onClick={() => setOpen(false)} to="/zpools">Status pools</Link>
+          <Link onClick={() => setOpen(false)} to="/ipmi">IPMI</Link>
+        </nav>
+      </aside>
+    </>
   );
 }
 

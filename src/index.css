@@ -5,9 +5,65 @@ body,
   min-height: 100vh;
   margin: 0;
   padding: 0;
-}
-
-body {
+  overflow-x: hidden;
   font-family: Arial, sans-serif;
   background: #f3f4f6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: #111827;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+}
+
+.burger-btn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+
+  .burger-btn {
+    display: block;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 2000;
+    font-size: 24px;
+    border: none;
+    background: #111827;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    z-index: 1500;
+    width: 240px;
+    transition: left 0.3s ease;
+  }
+
+  .sidebar.open {
+    left: 0;
+  }
+
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1400;
+  }
 }

@@ -4,6 +4,7 @@ import Dashboard from "./pages/dashboard";
 import Disks from "./pages/disks";
 import Cpu from "./pages/cpu";
 import Zpools from "./pages/zpools";
+import Ipmi from "./pages/ipmi";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/cpu" element={<Cpu />} />
           <Route path="/disks" element={<Disks />} />
           <Route path="/zpools" element={<Zpools />} />
+          <Route path="/ipmi" element={<Ipmi />} />
         </Route>
       </Routes>
     </BrowserRouter>

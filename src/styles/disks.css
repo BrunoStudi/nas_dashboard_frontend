@@ -1,0 +1,53 @@
+/* =========================
+   PAGE DISQUES
+========================= */
+
+.disks-page {
+  font-family: Arial, sans-serif;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.disks-page-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.disks-title-icon {
+  font-size: 32px;
+  color: #374151;
+}
+
+.disks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+
+/* =========================
+   RESPONSIVE MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .disks-page {
+    padding: 12px;
+  }
+
+  .disks-page-title {
+    margin-top: 60px;
+    font-size: 22px;
+  }
+
+  .disks-title-icon {
+    font-size: 28px;
+  }
+
+  .disks-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

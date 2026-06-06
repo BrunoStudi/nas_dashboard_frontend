@@ -1,0 +1,212 @@
+/* =========================
+   PAGE DASHBOARD
+========================= */
+
+.dashboard-page {
+  font-family: Arial, sans-serif;
+}
+
+.dashboard-page h1 {
+  margin-bottom: 24px;
+}
+
+
+/* =========================
+   LAYOUT
+========================= */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.dashboard-card {
+  background: white;
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+}
+
+.dashboard-card h2 {
+  margin-top: 0;
+  color: #374151;
+}
+
+.dashboard-main-value {
+  font-size: 22px;
+  font-weight: bold;
+  color: #111827;
+}
+
+
+/* =========================
+   BARRES RAM / STOCKAGE
+========================= */
+
+.ram-progress-wrapper {
+  margin-top: 16px;
+}
+
+.ram-progress-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.ram-progress-bar {
+  width: 100%;
+  height: 12px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.ram-progress-fill,
+.storage-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.ram-details {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: #4b5563;
+}
+
+
+/* =========================
+   TEMPÉRATURES IPMI
+========================= */
+
+.temp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.temp-card {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.temp-name {
+  font-weight: bold;
+  color: #374151;
+}
+
+.temp-value {
+  font-size: 30px;
+  font-weight: bold;
+  color: #111827;
+}
+
+.temp-status {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.temp-ok {
+  color: #16a34a;
+}
+
+.temp-warn {
+  color: #f59e0b;
+}
+
+.temp-crit {
+  color: #dc2626;
+}
+
+/* =========================
+   TITRES ET ICÔNES
+========================= */
+
+.dashboard-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dashboard-icon {
+  font-size: 22px;
+}
+
+.cpu-icon {
+  color: #414141;
+}
+
+.ram-icon {
+  color: #414141;
+}
+
+.storage-icon {
+  color: #414141;
+}
+
+.temp-icon {
+  color: #414141;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dashboard-header-icon {
+  font-size: 32px;
+  color: #374151;
+}
+
+
+/* =========================
+   RESPONSIVE MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .dashboard-page {
+    padding: 12px;
+  }
+
+  .dashboard-page h1 {
+    margin-top: 60px;
+    font-size: 17px;
+  }
+
+  .dashboard-grid {
+    gap: 16px;
+    margin-bottom: 0;
+  }
+
+  .dashboard-card {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .dashboard-main-value {
+    font-size: 18px;
+  }
+
+  .ram-progress-info {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .temp-value {
+    font-size: 26px;
+  }
+}

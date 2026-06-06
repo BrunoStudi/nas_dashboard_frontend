@@ -1,36 +1,40 @@
 import { useEffect, useState } from "react";
 import API from "../api/api";
 import DiskCard from "../composants/disk_card";
+import { FaHdd } from "react-icons/fa";
+import "../styles/disks.css";
 
 function Disk() {
 
   const [disks, setDisks] = useState([]);
 
   useEffect(() => {
+    const fetchDisks = () => {
+      API.get("/api/disks/")
+        .then((response) => {
+          setDisks(response.data);
+        })
+        .catch((error) => {
+          console.error("Erreur API :", error);
+        });
+    };
 
-    API.get("/api/disks/")
-      .then((response) => {
-        setDisks(response.data);
-      })
-      .catch((error) => {
-        console.error("Erreur API :", error);
-      });
+    fetchDisks();
 
+    const interval = setInterval(fetchDisks, 30000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
+    <div className="disks-page">
 
-    <div style={{ fontFamily: "Arial" }}>
+      <h1 className="disks-page-title">
+        <FaHdd className="disks-title-icon" />
+        Surveillance des disques
+      </h1>
 
-      <h1>Surveillance des disques</h1>
-
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
-          gap: "24px"
-        }}
-      >
+      <div className="disks-grid">
 
         {disks.map((disk) => (
           <DiskCard

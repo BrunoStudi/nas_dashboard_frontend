@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
+import { FaDatabase } from "react-icons/fa";
+
 import API from "../api/api";
 import ZpoolCard from "../composants/zpools_card";
+
+import "../styles/zpools.css";
 
 function Zpools() {
   const [zpools, setZpools] = useState([]);
@@ -16,20 +20,22 @@ function Zpools() {
   }, []);
 
   return (
-    <div>
-      <h1>Surveillance des pools ZFS</h1>
+    <div className="zpools-page">
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(340px, 1fr))",
-          gap: "24px"
-        }}
-      >
+      <h1 className="zpools-page-title">
+        <FaDatabase className="zpools-title-icon" />
+        Surveillance des pools ZFS
+      </h1>
+
+      <div className="zpools-grid">
         {zpools.map((pool) => (
-          <ZpoolCard key={pool.name} pool={pool} />
+          <ZpoolCard
+            key={pool.name}
+            pool={pool}
+          />
         ))}
       </div>
+
     </div>
   );
 }
