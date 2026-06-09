@@ -1,0 +1,16 @@
+.app-layout {
+  min-height: 100vh;
+  background: #f3f4f6;
+}
+
+.main-content {
+  margin-left: 260px;
+  padding: 24px;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    padding: 12px;
+  }
+}
