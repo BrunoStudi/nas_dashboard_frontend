@@ -81,6 +81,9 @@ function Dashboard() {
             Processeurs
           </h2>
           <p className="dashboard-main-value">{system.cpu_model || "N/A"}</p>
+          <p className="dashboard-sub-value">
+            Fréquence actuelle : <strong>{system.cpu_current_ghz} GHz</strong>
+          </p>
         </div>
 
         <div className="dashboard-card">

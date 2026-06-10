@@ -23,6 +23,21 @@
   color: #4b5563;
 }
 
+.dashboard-sub-value {
+  margin-top: 10px;
+  margin-bottom: 0;
+  color: #4b5563;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dashboard-sub-value strong {
+  color: #111827;
+  font-weight: 700;
+}
+
 
 /* =========================
    SECTIONS
