@@ -27,6 +27,8 @@ function Zpools() {
         Surveillance des pools ZFS
       </h1>
 
+      <div className="section-divider"></div>
+
       <div className="zpools-grid">
         {zpools.map((pool) => (
           <ZpoolCard

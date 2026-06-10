@@ -34,6 +34,8 @@ function Disk() {
         Surveillance des disques
       </h1>
 
+      <div className="section-divider"></div>
+
       <div className="disks-grid">
 
         {disks.map((disk) => (

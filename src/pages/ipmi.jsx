@@ -70,6 +70,8 @@ function Ipmi() {
         Gestion des contrôles IPMI
       </h1>
 
+      <div className="section-divider"></div>
+
       <section className="ipmi-card">
         <h2 className="ipmi-section-title">
           <FaBolt className="ipmi-section-icon" />

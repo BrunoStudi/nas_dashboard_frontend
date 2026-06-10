@@ -72,6 +72,8 @@ function Dashboard() {
         NAS EXODUS (Serveur Primaire)
       </h1>
 
+      <div className="section-divider"></div>
+
       <div className="dashboard-grid">
         <div className="dashboard-card">
           <h2 className="dashboard-title">

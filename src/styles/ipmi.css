@@ -275,6 +275,26 @@
   font-style: italic;
 }
 
+/* =========================
+  SECTION DIVIDER EFFET
+========================= */
+
+.section-divider {
+  height: 2px;
+  width: 100%;
+  margin: 16px 0 24px;
+
+  background: linear-gradient(
+    90deg,
+    #111827 0%,
+    #4b5563 50%,
+    transparent 100%
+  );
+
+  box-shadow: 0 0 8px rgba(107, 114, 128, 0.25);
+}
+
+
 
 /* =========================
    RESPONSIVE MOBILE

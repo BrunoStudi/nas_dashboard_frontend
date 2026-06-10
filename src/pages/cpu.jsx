@@ -37,6 +37,8 @@ function Cpu() {
         Surveillance des processeurs
       </h1>
 
+      <div className="section-divider"></div>
+
       <section className="cpu-section">
         <CpuCard cpu={cpu} />
       </section>
