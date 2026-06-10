@@ -1,16 +1,185 @@
-# React + Vite
+# DashboardNAS - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Présentation
 
-Currently, two official plugins are available:
+DashboardNAS est une application web de supervision développée en React permettant de surveiller un serveur TrueNAS SCALE.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+L'application offre une interface moderne pour consulter l'état du système, des disques, des pools ZFS, du matériel IPMI et, à terme, des ressources GPU dédiées à l'intelligence artificielle.
 
-## React Compiler
+Le projet est actuellement utilisé pour superviser l'infrastructure personnelle composée des serveurs :
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🚀 EXODUS : serveur principal
+- 🔨 HÉPHAÏSTOS : serveur de sauvegarde et réplication
+- 🤖 HESTIA : future assistante IA locale
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Fonctionnalités
+
+### Tableau de bord
+
+- Vue d'ensemble du serveur
+- Informations système
+- Utilisation des ressources
+- Statut global
+
+### CPU
+
+- Utilisation processeur en temps réel
+- Informations matérielles
+- Températures
+
+### Disques
+
+- Liste des disques
+- État SMART
+- Températures
+- Capacité et utilisation
+
+### Pools ZFS
+
+- État des pools
+- Capacité utilisée
+- Santé des pools
+- Informations ZFS
+
+### IPMI
+
+- Températures système
+- Vitesse des ventilateurs
+- Contrôle manuel et automatique
+- Surveillance matérielle
+
+### Fonctionnalités futures
+
+- Surveillance GPU NVIDIA Tesla P40
+- Gestion de la zone GPU
+- Statistiques VRAM
+- Intégration HESTIA
+- Notifications intelligentes
+
+---
+
+## Technologies utilisées
+
+- React
+- Vite
+- React Router
+- Recharts
+- Lucide React
+- CSS
+
+---
+
+## Installation
+
+### Cloner le projet
+
+```bash
+git clone https://github.com/BrunoStudi/nas_dashboard_frontend
+cd frontend
+```
+
+### Installer les dépendances
+
+```bash
+npm install
+```
+
+### Lancer en mode développement
+
+```bash
+npm run dev
+```
+
+L'application sera disponible sur :
+
+```text
+http://localhost:5173
+```
+
+---
+
+## Build de production
+
+```bash
+npm run build
+```
+
+Les fichiers générés seront disponibles dans :
+
+```text
+dist/
+```
+
+---
+
+## Architecture
+
+```text
+src/
+├── components/
+├── pages/
+├── layouts/
+├── services/
+├── styles/
+└── assets/
+```
+
+---
+
+## Roadmap
+
+### Terminé
+
+- [x] Dashboard principal
+- [x] Monitoring CPU
+- [x] Monitoring disques
+- [x] Monitoring pools ZFS
+- [x] Monitoring IPMI
+- [x] Interface responsive
+- [x] Sidebar moderne
+
+### En cours
+
+- [ ] Monitoring GPU NVIDIA
+- [ ] Gestion zone GPU
+- [ ] Historique des métriques
+
+### Futur
+
+- [ ] Intégration HESTIA
+- [ ] Commandes vocales
+- [ ] Notifications intelligentes
+- [ ] Gestion multi-serveurs
+- [ ] Intégration Home Assistant
+
+---
+
+## Infrastructure supervisée
+
+```text
+🚀 EXODUS
+├── TrueNAS SCALE
+├── DashboardNAS
+├── Ollama
+├── Open WebUI
+└── Tesla P40
+
+🔨 HÉPHAÏSTOS
+├── Sauvegardes
+├── Réplication
+└── Snapshots
+
+🏠 Home Assistant
+└── Raspberry Pi
+
+🤖 HESTIA
+└── Assistante IA locale (à venir)
+```
+
+---
+
+## Auteur
+
+Projet développé dans le cadre de l'administration et de la supervision d'une infrastructure personnelle basée sur TrueNAS SCALE.
