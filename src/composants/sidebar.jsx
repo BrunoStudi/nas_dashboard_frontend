@@ -8,51 +8,21 @@ import {
   Server,
   Bot,
   Menu,
-  X
+  X,
+  ChevronDown,
+  ChevronRight
 } from "lucide-react";
 
 import "../styles/sidebar.css";
 
 function Sidebar() {
   const [open, setOpen] = useState(false);
+  const [exodusOpen, setExodusOpen] = useState(true);
+  const [hephaistosOpen, setHephaistosOpen] = useState(false);
 
   const closeSidebar = () => {
     setOpen(false);
   };
-
-  const links = [
-    {
-      to: "/",
-      label: "NAS EXODUS",
-      icon: <LayoutDashboard size={20} />
-    },
-    {
-      to: "/cpu",
-      label: "CPU",
-      icon: <Cpu size={20} />
-    },
-    {
-      to: "/disks",
-      label: "Disques",
-      icon: <HardDrive size={20} />
-    },
-    {
-      to: "/zpools",
-      label: "Pools ZFS",
-      icon: <Database size={20} />
-    },
-    {
-      to: "/ipmi",
-      label: "IPMI",
-      icon: <Server size={20} />
-    },
-    {
-      to: "/hestia",
-      label: "HESTIA",
-      icon: <Bot size={20} />,
-      disabled: true
-    }
-  ];
 
   return (
     <>
@@ -74,35 +44,126 @@ function Sidebar() {
 
           <div>
             <h2>DashboardNAS</h2>
-            <p>EXODUS</p>
+            <p>Infrastructure</p>
           </div>
         </div>
 
         <nav className="sidebar-nav">
-          {links.map((link) =>
-            link.disabled ? (
-              <div key={link.to} className="sidebar-link disabled">
-                {link.icon}
-                <span>{link.label}</span>
-              </div>
-            ) : (
+          <button
+            className="sidebar-group-btn"
+            onClick={() => setExodusOpen(!exodusOpen)}
+          >
+            <span className="sidebar-group-title">
+              <Server size={20} />
+              EXODUS
+            </span>
+
+            {exodusOpen ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
+          </button>
+
+          {exodusOpen && (
+            <div className="sidebar-submenu">
               <NavLink
-                key={link.to}
-                to={link.to}
+                to="/"
                 onClick={closeSidebar}
                 className={({ isActive }) =>
                   isActive ? "sidebar-link active" : "sidebar-link"
                 }
               >
-                {link.icon}
-                <span>{link.label}</span>
+                <LayoutDashboard size={18} />
+                <span>Dashboard</span>
               </NavLink>
-            )
+
+              <NavLink
+                to="/cpu"
+                onClick={closeSidebar}
+                className={({ isActive }) =>
+                  isActive ? "sidebar-link active" : "sidebar-link"
+                }
+              >
+                <Cpu size={18} />
+                <span>CPU</span>
+              </NavLink>
+
+              <NavLink
+                to="/disks"
+                onClick={closeSidebar}
+                className={({ isActive }) =>
+                  isActive ? "sidebar-link active" : "sidebar-link"
+                }
+              >
+                <HardDrive size={18} />
+                <span>Disques</span>
+              </NavLink>
+
+              <NavLink
+                to="/zpools"
+                onClick={closeSidebar}
+                className={({ isActive }) =>
+                  isActive ? "sidebar-link active" : "sidebar-link"
+                }
+              >
+                <Database size={18} />
+                <span>Pools ZFS</span>
+              </NavLink>
+
+              <NavLink
+                to="/ipmi"
+                onClick={closeSidebar}
+                className={({ isActive }) =>
+                  isActive ? "sidebar-link active" : "sidebar-link"
+                }
+              >
+                <Server size={18} />
+                <span>IPMI</span>
+              </NavLink>
+            </div>
           )}
+
+          <button
+            className="sidebar-group-btn disabled"
+            onClick={() => setHephaistosOpen(!hephaistosOpen)}
+          >
+            <span className="sidebar-group-title">
+              <Server size={20} />
+              HÉPHAÏSTOS
+            </span>
+
+            {hephaistosOpen ? <ChevronDown size={18} /> : <ChevronRight size={18} />}
+          </button>
+
+          {hephaistosOpen && (
+            <div className="sidebar-submenu disabled">
+              <div className="sidebar-link disabled">
+                <LayoutDashboard size={18} />
+                <span>Dashboard</span>
+              </div>
+
+              <div className="sidebar-link disabled">
+                <Cpu size={18} />
+                <span>CPU</span>
+              </div>
+
+              <div className="sidebar-link disabled">
+                <HardDrive size={18} />
+                <span>Disques</span>
+              </div>
+
+              <div className="sidebar-link disabled">
+                <Database size={18} />
+                <span>Pools ZFS</span>
+              </div>
+            </div>
+          )}
+
+          <div className="sidebar-link disabled">
+            <Bot size={20} />
+            <span>HESTIA</span>
+          </div>
         </nav>
 
         <div className="sidebar-footer">
-          <span>🚀 EXODUS</span>
+          <span>🚀 Serveurs</span>
           <small>Monitoring local</small>
         </div>
       </aside>
