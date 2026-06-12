@@ -8,11 +8,15 @@ import "../styles/zpools.css";
 
 function Zpools() {
   const [zpools, setZpools] = useState([]);
+  const [zpoolDetails, setZpoolDetails] = useState({});
+  const [zpoolStatus, setZpoolStatus] = useState("N/A");
 
   useEffect(() => {
     API.get("/api/zpools/")
       .then((response) => {
-        setZpools(response.data);
+        setZpools(response.data.zpools || []);
+        setZpoolDetails(response.data.zpool_details || {});
+        setZpoolStatus(response.data.zpool_status || "N/A");
       })
       .catch((error) => {
         console.error("Erreur API ZPools :", error);
@@ -29,11 +33,18 @@ function Zpools() {
 
       <div className="section-divider"></div>
 
+      {zpoolStatus !== "all pools are healthy" && (
+        <div className="zpool-global-alert">
+          {zpoolStatus}
+        </div>
+      )}
+
       <div className="zpools-grid">
         {zpools.map((pool) => (
           <ZpoolCard
             key={pool.name}
             pool={pool}
+            details={zpoolDetails[pool.name]}
           />
         ))}
       </div>

@@ -18,9 +18,16 @@
   color: #374151;
 }
 
+.section-divider {
+  height: 2px;
+  width: 100%;
+  margin: 16px 0 24px;
+  background: linear-gradient(90deg, #111827 0%, #4b5563 50%, transparent 100%);
+  box-shadow: 0 0 8px rgba(107, 114, 128, 0.25);
+}
 
 /* =========================
-   GRILLE ZPOOLS
+   GRILLE
 ========================= */
 
 .zpools-grid {
@@ -30,31 +37,284 @@
 }
 
 /* =========================
-  SECTION DIVIDER EFFET
+   ALERTE GLOBALE
 ========================= */
 
-.section-divider {
-  height: 2px;
-  width: 100%;
-  margin: 16px 0 24px;
-
-  background: linear-gradient(
-    90deg,
-    #111827 0%,
-    #4b5563 50%,
-    transparent 100%
-  );
-
-  box-shadow: 0 0 8px rgba(107, 114, 128, 0.25);
+.zpool-global-alert {
+  background: #fff7ed;
+  border: 1px solid #fdba74;
+  color: #9a3412;
+  border-radius: 14px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  white-space: pre-wrap;
 }
 
+/* =========================
+   CARTE ZPOOL
+========================= */
+
+.zpool-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.zpool-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.zpool-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.zpool-card-header h3 {
+  margin: 0;
+}
+
+.zpool-card-header p {
+  margin: 6px 0 0;
+  color: #6b7280;
+}
+
+.zpool-card-content {
+  margin-top: 18px;
+}
+
+.zpool-card-content p {
+  margin: 8px 0;
+}
 
 /* =========================
-   RESPONSIVE MOBILE
+   BADGES STATUT
+========================= */
+
+.zpool-status {
+  color: white;
+  border-radius: 12px;
+  padding: 8px 12px;
+  font-weight: bold;
+  height: fit-content;
+  font-size: 13px;
+}
+
+.zpool-status.online {
+  background: #16a34a;
+}
+
+.zpool-status.error {
+  background: #dc2626;
+}
+
+/* =========================
+   DETAILS DANS LA CARTE
+========================= */
+
+.zpool-details {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.zpool-details-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.zpool-details-grid div {
+  background: #f9fafb;
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+}
+
+.zpool-details-grid span {
+  display: block;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.zpool-details-grid strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 18px;
+}
+
+.zpool-ok-text {
+  color: #16a34a;
+}
+
+.zpool-error-text {
+  color: #dc2626;
+}
+
+.zpool-scrub {
+  margin-top: 14px;
+  background: #f9fafb;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.zpool-scrub span {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.zpool-scrub p {
+  margin: 6px 0 0;
+  font-size: 14px;
+}
+
+/* =========================
+   MODAL DETAILS VDEVS
+========================= */
+
+.zpool-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.zpool-modal {
+  width: 100%;
+  max-width: 760px;
+  max-height: 85vh;
+  overflow-y: auto;
+
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.zpool-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.zpool-modal-header h2 {
+  margin: 0;
+}
+
+.zpool-modal-header p {
+  margin: 6px 0 0;
+  color: #6b7280;
+}
+
+.zpool-modal-header button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  background: #f3f4f6;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.zpool-modal-header button:hover {
+  background: #e5e7eb;
+}
+
+.zpool-modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* =========================
+   VDEVS / DISQUES
+========================= */
+
+.zpool-vdev-box {
+  background: #f9fafb;
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+}
+
+.zpool-vdev-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.zpool-vdev-header h4 {
+  margin: 0;
+}
+
+.zpool-vdev-type {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.zpool-vdev-header .zpool-status {
+  color: white;
+}
+
+.zpool-disk-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.zpool-disk-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.zpool-disk-line strong {
+  display: block;
+  font-size: 13px;
+  word-break: break-all;
+}
+
+.zpool-disk-line span {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.zpool-disk-errors {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.zpool-empty-details {
+  color: #6b7280;
+}
+
+/* =========================
+   RESPONSIVE
 ========================= */
 
 @media (max-width: 768px) {
-
   .zpools-page {
     padding: 12px;
   }
@@ -71,5 +331,21 @@
   .zpools-grid {
     grid-template-columns: 1fr;
     gap: 16px;
+  }
+
+  .zpool-details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .zpool-modal {
+    padding: 18px;
+  }
+
+  .zpool-disk-line {
+    flex-direction: column;
+  }
+
+  .zpool-disk-errors {
+    flex-wrap: wrap;
   }
 }
