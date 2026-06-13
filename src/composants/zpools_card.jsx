@@ -15,12 +15,6 @@ function getRaidLabel(type) {
 
 function ZpoolCard({ pool, details }) {
   const [open, setOpen] = useState(false);
-  const isHealthy = pool.health === "ONLINE";
-  
-  const hasErrors =
-    details?.read_errors > 0 ||
-    details?.write_errors > 0 ||
-    details?.checksum_errors > 0;
 
   const diskHasErrors = (disk) =>
     disk.read > 0 ||
@@ -29,6 +23,14 @@ function ZpoolCard({ pool, details }) {
 
   const vdevHasErrors = (vdev) =>
     vdev.disks?.some((disk) => diskHasErrors(disk));
+
+  const hasErrors =
+    details?.read_errors > 0 ||
+    details?.write_errors > 0 ||
+    details?.checksum_errors > 0 ||
+    details?.vdevs?.some((vdev) => vdevHasErrors(vdev));
+
+  const isHealthy = pool.health === "ONLINE" && !hasErrors;
 
   return (
     <>
@@ -45,9 +47,9 @@ function ZpoolCard({ pool, details }) {
         </div>
 
         <div className="zpool-card-content">
-          <p><strong>Taille :</strong> {pool.size}B</p>
-          <p><strong>Utilisé :</strong> {pool.allocated}B</p>
-          <p><strong>Libre :</strong> {pool.free}B</p>
+          <p><strong>Taille :</strong> {pool.size}</p>
+          <p><strong>Utilisé :</strong> {pool.allocated}</p>
+          <p><strong>Libre :</strong> {pool.free}</p>
           <p><strong>Utilisation :</strong> {pool.capacity}</p>
           <p><strong>Fragmentation :</strong> {pool.fragmentation}</p>
           <p><strong>Dedup :</strong> {pool.dedup}</p>
@@ -96,61 +98,80 @@ function ZpoolCard({ pool, details }) {
 
             <div className="zpool-modal-content">
               {details?.vdevs?.length > 0 ? (
-                details.vdevs.map((vdev, index) => (
-                  <div key={index} className="zpool-vdev-box">
-                    <div className="zpool-vdev-header">
-                      <div>
-                        <h4>{getRaidLabel(vdev.type)}</h4>
-                        <span className="zpool-vdev-type">
-                          {vdev.type}
+                details.vdevs.map((vdev, index) => {
+                  const currentVdevHasErrors = vdevHasErrors(vdev);
+
+                  return (
+                    <div key={index} className="zpool-vdev-box">
+                      <div className="zpool-vdev-header">
+                        <div>
+                          <h4>{getRaidLabel(vdev.type)}</h4>
+                          <span className="zpool-vdev-type">
+                            {vdev.type}
+                          </span>
+                        </div>
+
+                        <span
+                          className={`zpool-status ${
+                            vdev.state === "ONLINE" && !currentVdevHasErrors
+                              ? "online"
+                              : "error"
+                          }`}
+                        >
+                          {vdev.state}
                         </span>
                       </div>
 
-                      <span
-                        className={`zpool-status ${vdev.state === "ONLINE" && !vdevHasErrors(vdev)
-                          ? "online"
-                          : "error"
-                          }`}
-                      >
-                        {vdev.state}
-                      </span>
+                      <div className="zpool-disk-list">
+                        {vdev.disks.map((disk) => {
+                          const currentDiskHasErrors = diskHasErrors(disk);
+
+                          return (
+                            <div key={disk.uuid || disk.device} className="zpool-disk-line">
+                              <div>
+                                <strong>
+                                  {disk.model || "Disque inconnu"}
+                                </strong>
+
+                                <span className="zpool-disk-serial">
+                                  SN : {disk.serial || "N/A"}
+                                </span>
+
+                                <span className="zpool-disk-device">
+                                  {disk.device || "N/A"}
+                                </span>
+
+                                <span
+                                  className={
+                                    disk.state === "ONLINE" && !currentDiskHasErrors
+                                      ? "zpool-ok-text"
+                                      : "zpool-error-text"
+                                  }
+                                >
+                                  {disk.state}
+                                </span>
+                              </div>
+
+                              <div className="zpool-disk-errors">
+                                <span className={disk.read > 0 ? "zpool-error-text" : ""}>
+                                  READ {disk.read}
+                                </span>
+
+                                <span className={disk.write > 0 ? "zpool-error-text" : ""}>
+                                  WRITE {disk.write}
+                                </span>
+
+                                <span className={disk.checksum > 0 ? "zpool-error-text" : ""}>
+                                  CKSUM {disk.checksum}
+                                </span>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
                     </div>
-
-                    <div className="zpool-disk-list">
-                      {vdev.disks.map((disk) => (
-                        <div key={disk.name} className="zpool-disk-line">
-                          <div>
-                            <strong>{disk.name}</strong>
-
-                            <span
-                              className={
-                                disk.state === "ONLINE" && !diskHasErrors(disk)
-                                  ? "zpool-ok-text"
-                                  : "zpool-error-text"
-                              }
-                            >
-                              {disk.state}
-                            </span>
-                          </div>
-
-                          <div className="zpool-disk-errors">
-                            <span className={disk.read > 0 ? "zpool-error-text" : ""}>
-                              READ {disk.read}
-                            </span>
-
-                            <span className={disk.write > 0 ? "zpool-error-text" : ""}>
-                              WRITE {disk.write}
-                            </span>
-
-                            <span className={disk.checksum > 0 ? "zpool-error-text" : ""}>
-                              CKSUM {disk.checksum}
-                            </span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))
+                  );
+                })
               ) : (
                 <p className="zpool-empty-details">
                   Aucun détail VDEV disponible pour ce pool.
