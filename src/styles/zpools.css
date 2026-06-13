@@ -43,12 +43,48 @@
 .zpool-global-alert {
   background: #fff7ed;
   border: 1px solid #fdba74;
-  color: #9a3412;
+  border-left: 5px solid #f97316;
+  color: #7c2d12;
   border-radius: 14px;
-  padding: 14px 16px;
-  margin-bottom: 20px;
-  font-weight: 600;
-  white-space: pre-wrap;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.12);
+}
+
+.zpool-alert-title {
+  font-weight: 800;
+  color: #c2410c;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.zpool-alert-text {
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.zpool-alert-text p {
+  margin: 8px 0;
+}
+
+.zpool-alert-text code {
+  background: #ffedd5;
+  color: #9a3412;
+  border-radius: 6px;
+  padding: 2px 6px;
+  font-weight: 700;
+}
+
+.zpool-alert-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: #ea580c;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.zpool-alert-link:hover {
+  text-decoration: underline;
 }
 
 /* =========================

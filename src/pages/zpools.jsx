@@ -35,7 +35,36 @@ function Zpools() {
 
       {zpoolStatus !== "all pools are healthy" && (
         <div className="zpool-global-alert">
-          {zpoolStatus}
+          <div className="zpool-alert-title">
+            ⚠️ Incident détecté sur un pool ZFS
+          </div>
+
+          <div className="zpool-alert-text">
+            <p>
+              One or more devices has experienced an unrecoverable error.
+              An attempt was made to correct the error. Applications are unaffected.
+            </p>
+
+            <p>
+              <strong>Action :</strong> Determine if the device needs to be replaced,
+              and clear the errors using <code>zpool clear</code> or replace the device
+              with <code>zpool replace</code>.
+            </p>
+
+            <p>
+              <strong>Dernier scan :</strong>{" "}
+              {zpoolStatus.match(/scan:\s*(.*)/)?.[1] || "Information indisponible"}
+            </p>
+
+            <a
+              href="https://openzfs.github.io/openzfs-docs/msg/ZFS-8000-9P"
+              target="_blank"
+              rel="noreferrer"
+              className="zpool-alert-link"
+            >
+              Documentation OpenZFS
+            </a>
+          </div>
         </div>
       )}
 

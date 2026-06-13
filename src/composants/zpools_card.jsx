@@ -15,13 +15,20 @@ function getRaidLabel(type) {
 
 function ZpoolCard({ pool, details }) {
   const [open, setOpen] = useState(false);
-
   const isHealthy = pool.health === "ONLINE";
-
+  
   const hasErrors =
     details?.read_errors > 0 ||
     details?.write_errors > 0 ||
     details?.checksum_errors > 0;
+
+  const diskHasErrors = (disk) =>
+    disk.read > 0 ||
+    disk.write > 0 ||
+    disk.checksum > 0;
+
+  const vdevHasErrors = (vdev) =>
+    vdev.disks?.some((disk) => diskHasErrors(disk));
 
   return (
     <>
@@ -99,7 +106,12 @@ function ZpoolCard({ pool, details }) {
                         </span>
                       </div>
 
-                      <span className={`zpool-status ${vdev.state === "ONLINE" ? "online" : "error"}`}>
+                      <span
+                        className={`zpool-status ${vdev.state === "ONLINE" && !vdevHasErrors(vdev)
+                          ? "online"
+                          : "error"
+                          }`}
+                      >
                         {vdev.state}
                       </span>
                     </div>
@@ -109,13 +121,30 @@ function ZpoolCard({ pool, details }) {
                         <div key={disk.name} className="zpool-disk-line">
                           <div>
                             <strong>{disk.name}</strong>
-                            <span>{disk.state}</span>
+
+                            <span
+                              className={
+                                disk.state === "ONLINE" && !diskHasErrors(disk)
+                                  ? "zpool-ok-text"
+                                  : "zpool-error-text"
+                              }
+                            >
+                              {disk.state}
+                            </span>
                           </div>
 
                           <div className="zpool-disk-errors">
-                            <span>READ {disk.read}</span>
-                            <span>WRITE {disk.write}</span>
-                            <span>CKSUM {disk.checksum}</span>
+                            <span className={disk.read > 0 ? "zpool-error-text" : ""}>
+                              READ {disk.read}
+                            </span>
+
+                            <span className={disk.write > 0 ? "zpool-error-text" : ""}>
+                              WRITE {disk.write}
+                            </span>
+
+                            <span className={disk.checksum > 0 ? "zpool-error-text" : ""}>
+                              CKSUM {disk.checksum}
+                            </span>
                           </div>
                         </div>
                       ))}
