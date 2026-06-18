@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { FaFan, FaBolt, FaClipboardList } from "react-icons/fa";
-import { FaServer } from "react-icons/fa";
+import { FaFan, FaBolt, FaClipboardList, FaServer, FaMicrochip } from "react-icons/fa";
 import API from "../api/api";
 import "../styles/ipmi.css";
 
@@ -63,6 +62,18 @@ function Ipmi() {
     return "fan-fast";
   };
 
+  const cpuFans = fans.filter((fan) =>
+    ["FAN1", "FAN2"].includes(fan.name)
+  );
+
+  const hddFans = fans.filter((fan) =>
+    ["FAN3", "FAN4", "FANA"].includes(fan.name)
+  );
+
+  const sasFans = fans.filter((fan) =>
+    ["FAN5", "FAN6"].includes(fan.name)
+  );
+
   return (
     <div className="ipmi-page">
       <h1 className="ipmi-page-title">
@@ -75,7 +86,7 @@ function Ipmi() {
       <section className="ipmi-card">
         <h2 className="ipmi-section-title">
           <FaBolt className="ipmi-section-icon" />
-          Mode des ventilateurs
+          Mode des ventilateurs HDD
         </h2>
 
         <p>
@@ -123,12 +134,82 @@ function Ipmi() {
 
       <section className="ipmi-card">
         <h2 className="ipmi-section-title">
+          <FaMicrochip className="ipmi-section-icon" />
+          Ventilateurs zone CPU
+        </h2>
+
+        <div className="fan-grid">
+          {cpuFans.map((fan) => (
+            <div key={fan.name} className="fan-card">
+
+              <div className="fan-name">
+                <FaFan className={`fan-icon ${getFanSpeedClass(fan.rpm)}`} />
+                {fan.name}
+              </div>
+
+              <div className="fan-rpm">
+                {fan.rpm} RPM
+              </div>
+
+              <div
+                className={`fan-status ${fan.status.toLowerCase() === "ok"
+                  ? "fan-status-ok"
+                  : fan.status.toLowerCase() === "warn"
+                    ? "fan-status-warn"
+                    : "fan-status-crit"
+                  }`}
+              >
+                {fan.status}
+              </div>
+
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="ipmi-card">
+        <h2 className="ipmi-section-title">
           <FaFan className="ipmi-section-icon" />
           Ventilateurs zones HDD
         </h2>
 
         <div className="fan-grid">
-          {fans.map((fan) => (
+          {hddFans.map((fan) => (
+            <div key={fan.name} className="fan-card">
+
+              <div className="fan-name">
+                <FaFan className={`fan-icon ${getFanSpeedClass(fan.rpm)}`} />
+                {fan.name}
+              </div>
+
+              <div className="fan-rpm">
+                {fan.rpm} RPM
+              </div>
+
+              <div
+                className={`fan-status ${fan.status.toLowerCase() === "ok"
+                  ? "fan-status-ok"
+                  : fan.status.toLowerCase() === "warn"
+                    ? "fan-status-warn"
+                    : "fan-status-crit"
+                  }`}
+              >
+                {fan.status}
+              </div>
+
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="ipmi-card">
+        <h2 className="ipmi-section-title">
+          <FaServer className="ipmi-section-icon" />
+          Ventilateurs zone SAS
+        </h2>
+
+        <div className="fan-grid">
+          {sasFans.map((fan) => (
             <div key={fan.name} className="fan-card">
 
               <div className="fan-name">
