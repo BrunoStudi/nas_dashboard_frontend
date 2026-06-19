@@ -12,6 +12,7 @@ import {
   ChevronDown,
   ChevronRight
 } from "lucide-react";
+import { FaMicrochip } from "react-icons/fa";
 
 import "../styles/sidebar.css";
 
@@ -83,6 +84,17 @@ function Sidebar() {
               >
                 <Cpu size={18} />
                 <span>CPU</span>
+              </NavLink>
+
+              <NavLink
+                to="/gpu"
+                onClick={closeSidebar}
+                className={({ isActive }) =>
+                  isActive ? "sidebar-link active" : "sidebar-link"
+                }
+              >
+                <FaMicrochip size={18} />
+                <span>GPU</span>
               </NavLink>
 
               <NavLink
